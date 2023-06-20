@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<form method="GET" action="{% url 'filemanagement:feed' %}">
+    {% crispy form %}
+</form>
+{% for file in files %}
+<div>
+    <h3>{{ file.title }}</h3>
+    <p>{{ file.description }}</p>
+    <a href="{{ file.file_url }}">Download</a>
+</div>
+{% endfor %}
+{% endblock %}

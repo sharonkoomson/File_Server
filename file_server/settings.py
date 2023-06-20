@@ -127,6 +127,16 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'yeboahtimothyl@gmail.com'  # Replace with your Gmail address
+EMAIL_HOST_PASSWORD = '@Percyj@ckson485@'  # Replace with your Gmail password or app password
+
+LOGIN_URL = 'login'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
