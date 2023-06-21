@@ -4,6 +4,9 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 from django import forms
 from .forms import FileForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+import os
 
 class SearchForm(forms.Form):
     query = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Search files'}))
@@ -42,3 +45,17 @@ def upload_file(request):
     else:
         form = FileForm()
     return render(request, 'admin/upload_file.html', {'form': form})
+
+
+def download_file(request, file_id):
+    file = get_object_or_404(File, id=file_id)
+    file.downloads += 1  # Increment the download count
+    file.save()
+
+    # Get the file's extension
+    file_extension = os.path.splitext(file.file.name)[1]
+
+    # Return the file as a download response
+    response = HttpResponse(file.file, content_type='application/octet-stream')
+    response['Content-Disposition'] = f'attachment; filename="{file.title}{file_extension}"'
+    return response

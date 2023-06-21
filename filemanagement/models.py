@@ -10,7 +10,7 @@ class File(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def get_file_url(self):
-        return self.file.url[len('files/'):]  # Remove 'files/' segment from the URL
+        return self.file.url
 
 
     def __str__(self):
