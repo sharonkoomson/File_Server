@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import File
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 from django import forms
+from .forms import FileForm
 
 class SearchForm(forms.Form):
     query = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Search files'}))
@@ -30,3 +31,14 @@ def feed(request):
         'form': form,
     }
     return render(request, 'filemanagement/feed.html', context)
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = FileForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = form.save()
+            return redirect('file_detail', file_id=file.id)
+    else:
+        form = FileForm()
+    return render(request, 'admin/upload_file.html', {'form': form})

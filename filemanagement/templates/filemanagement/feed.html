@@ -10,7 +10,8 @@
 <div>
     <h3>{{ file.title }}</h3>
     <p>{{ file.description }}</p>
-    <a href="{{ file.file_url }}">Download</a>
+    <a href="{{ file.get_file_url }}">Preview</a>
+    <a href="{{ file.get_file_url }}" download>Download</a>
 </div>
 {% endfor %}
 {% endblock %}
