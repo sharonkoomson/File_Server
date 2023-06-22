@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email Message</title>
+</head>
+<body>
+    <p>Here is the file you requested:</p>
+    <p>Title: {{ file.title }}</p>
+    <p>Description: {{ file.description }}</p>
+    <p>Download Link: <a href="{{ file.get_file_url }}">Download</a></p>
+</body>
+</html>

@@ -19,6 +19,7 @@
         <div class="file-actions">
             <a href="{{ file.get_file_url }}" class="btn btn-primary actions">Preview</a>
             <a href="{% url 'filemanagement:download_file' file_id=file.id %}" download class="btn btn-primary actions">Download</a>
+            <a href="{% url 'filemanagement:send_via_email' file_id=file.id %}" class="btn btn-primary actions">Send Via Mail</a>
         </div>
     </div>
     {% endfor %}
