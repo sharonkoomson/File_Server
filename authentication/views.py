@@ -28,7 +28,7 @@ def login_view(request):
             login(request, user)
             return redirect('filemanagement:feed')
         else:
-            messages.error(request, 'Invalid username or password.')
+            messages.success(request, 'Invalid username or password.')
     return render(request, 'registration/login.html')
 
 
